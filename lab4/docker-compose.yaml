@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+
+    redis:
+      image: redis
+  
+    web:
+        image: bulbawarrior/lab4_pyapp
+        command: python main.py
+        depends_on:
+          - redis
+
+    nginx:
+      image: bulbawarrior/lab4_nginx
+      
+      ports:
+        - "80:80"
+      depends_on:
+        - web
+      
+        
